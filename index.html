@@ -10,9 +10,161 @@
     </head>  
     <body>
         <div class="container">
-            <h1>Input json files here:</h1> 
+            <h1>Scheduo</h1>
+            <h2>Input json files here:</h2> 
             <input type="file" id='fs' accept=".json" multiple>
-            <p>Make sure your file follows this structure:</p>
+            <p>Provide name (if the same name shows up place a different number in front of it), days of the week, and availabilities during the week through start and end times in military time.</p>
+            <p>Example json file:</p>
+            <pre>
+                <code>
+                    {
+                        "name1": {
+                            "sun": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "mon": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "tue": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "wed": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "thu": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "fri": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "sat": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ]
+                        },
+                        "name2": {
+                            "sun": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "mon": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "tue": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "wed": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "thu": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "fri": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ],
+                            "sat": [
+                                [
+                                    "2:35",
+                                    "10:25"
+                                ],
+                                [
+                                    "12:35",
+                                    "18:25"
+                                ]
+                            ]
+                        }
+                    }
+                </code>
+            </pre>
         </div>
     </body>
 </html>
