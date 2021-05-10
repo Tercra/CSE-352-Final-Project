@@ -24,6 +24,7 @@ window.onload = function(){
             this.time = time
             this.domain = []
             this.domain_marks = []
+            this.non_support_sets = []  //2d array most likely
             this.assignment = 0
         }
 
@@ -50,17 +51,25 @@ window.onload = function(){
 
     function dwo(v)
     {
+        //TODO
+    }
 
+    function restore(vars, level)
+    {
+        //TODO
     }
 
     // vi and vl are placeholder variable names until 
     // I actually figure out what they do in the algorithm
-    function check_forward4(vars, level, vi, vl)
+    function check_forward4(vars, level, shift, person)
     {
+        // I changed the names of the last two parameters to "shift" and "person"
+        // since that is what they're equivalent to.
 
+        // TODO
     }
 
-    function search_fc4(vars, level)
+    function search_fc4(vars, level, solution)
     {
         // search_fc4 is the same as search_fc3, I screenshot the function in the chat.
 
@@ -72,12 +81,14 @@ window.onload = function(){
         // I don't think this syntax will be useful in the algorithm (except maybe for checking 
         // if one person is scheduled twice in one day), but it may be useful in testing/debugging.
 
-        
+        // TODO
+
+
     }
 
     // function fc4()
     // {
-
+            //I don't think we need this, our schedule_shifts function handles this
     // }
 
 
@@ -123,8 +134,6 @@ window.onload = function(){
         //console.log(input)
 
         var av = JSON.parse(input);
-
-        // TODO: Create a csp problem given the availabilities of people.
 
         var days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"]
 
@@ -197,16 +206,12 @@ window.onload = function(){
         // Solution array to place assignments
         var solution = []
 
-        // The non-support sets mentioned in the FC4 algorithm (shown in function FC4)
-        // finds for each pair of variables any domain value combinations that don't work.
-        // Since this only happens for us when someone is put in two shifts in one day, I 
-        // don't believe we need to use these variables to check for this. If/when I realize
-        // we do in fact need them I will add it as a variable in the Shift class.
+        // TODO: Initialize non_support_sets array
 
         var vars = [sun_shifts, mon_shifts, tue_shifts, wed_shifts, thu_shifts, fri_shifts, sat_shifts]
         console.log(vars)
 
-        return search_fc4(vars, 1)
+        return search_fc4(vars, 1, solution)
     }
 
 }
