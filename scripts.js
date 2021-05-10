@@ -1,5 +1,22 @@
 window.onload = function(){
 
+    const days = {
+        SUNDAY: 0,
+        MONDAY: 1,
+        TUESDAY: 2,
+        WEDNESDAY: 3,
+        THURSDAY: 4,
+        FRIDAY: 5,
+        SATURDAY: 6
+    }
+
+    const times = {
+        MORNING: 0,
+        AFTERNOON: 1,
+        EVENING: 2,
+        NIGHT: 3
+    }
+
     class Shift
     {
         constructor(day, time) {
@@ -26,7 +43,7 @@ window.onload = function(){
             fstring = ev.target.result
             console.log(fstring);
             console.log(typeof fstring)
-            schedule_shifts(fstring)
+            output = schedule_shifts(fstring)
         }
         reader.readAsText(files[0]);
     });
@@ -45,7 +62,17 @@ window.onload = function(){
 
     function search_fc4(vars, level)
     {
+        // search_fc4 is the same as search_fc3, I screenshot the function in the chat.
 
+        // vars is set up currently like this:
+        // vars[day][time]
+        // day is each day of the week, I made an enum for simplicity
+        // time is for morning, afternoon, evening, or night. I also made an enum for this.
+        // Example: vars[TUESDAY][AFTERNOON] would be tuesday afternoon (obviously)
+        // I don't think this syntax will be useful in the algorithm (except maybe for checking 
+        // if one person is scheduled twice in one day), but it may be useful in testing/debugging.
+
+        
     }
 
     // function fc4()
@@ -158,9 +185,6 @@ window.onload = function(){
                 }
             }
         }
-
-        // TODO: Finish setting up FC4 initialization before calling search_fc4()
-        // May need to pass more parameters than shown in the algorithm due to scope
         
         // We need a way to mark each domain in a variable.
         // For now, going to use an array in Shifts called domain_marks
@@ -170,7 +194,19 @@ window.onload = function(){
             eval(day + "_shifts[2].setDomainMarks()")
             eval(day + "_shifts[3].setDomainMarks()")
         }
+        // Solution array to place assignments
+        var solution = []
 
+        // The non-support sets mentioned in the FC4 algorithm (shown in function FC4)
+        // finds for each pair of variables any domain value combinations that don't work.
+        // Since this only happens for us when someone is put in two shifts in one day, I 
+        // don't believe we need to use these variables to check for this. If/when I realize
+        // we do in fact need them I will add it as a variable in the Shift class.
+
+        var vars = [sun_shifts, mon_shifts, tue_shifts, wed_shifts, thu_shifts, fri_shifts, sat_shifts]
+        console.log(vars)
+
+        return search_fc4(vars, 1)
     }
 
 }
