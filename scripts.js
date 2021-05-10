@@ -50,19 +50,39 @@ window.onload = function(){
             fstring = ev.target.result
             console.log(fstring);
             console.log(typeof fstring)
-            output = schedule_shifts(fstring)
+            let output = schedule_shifts(fstring)
+            // TODO: Put some code here to parse through output to make it readable in the user side
+            // For now I'll add a test string to see if this works, replace output_test with the reformated output
+            let output_test = `Hello there\nThis is a test\nTo see if the output can be formatted this way`
+            document.getElementById("Output").innerHTML = output_test;
         }
         reader.readAsText(files[0]);
     });
 
+    // For each given variable (shift), check its domain (people that can cover the shift)
+    // if the domain_mark is 0 (unmarked) return true
+    // If all the domain_marks are marked (1) then return false
     function dwo(v)
     {
-        //TODO
+        for (let i = 0; i < v.domain_marks.length; i++){
+            if (v.domain_marks[i] == 0)
+                return true;
+        }
+        return false;
     }
 
+    // Restore the domain to the previous state
+    // Effectively this is just going through each variable (shift) in vars
+    // Then it goes through each domain (people that can cover the shifts) in the var (shift)
+    // And finally, if the domain is marked at that level (mark == level), then it will unmark it (mark == 0)
     function restore(vars, level)
     {
-        //TODO
+        for (let i = 0; i < vars.length; i++){
+            for (let j = 0; j < vars[i].domain.length; j++){
+                if (vars[i].domain_marks[j] == level)
+                    vars[i].domain_marks[j] = 0;
+            }
+        }
     }
 
     // vi and vl are placeholder variable names until 
@@ -96,17 +116,6 @@ window.onload = function(){
     // {
             //I don't think we need this, our schedule_shifts function handles this
     // }
-
-
-
-
-
-
-
-
-
-
-
 
     function schedule_meetup(input, min_meet_time = 0)
     {
