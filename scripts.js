@@ -61,9 +61,18 @@ window.onload = function(){
         return false;
     }
 
+    // Restore the domain to the previous state
+    // Effectively this is just going through each variable (shift) in vars
+    // Then it goes through each domain (people that can cover the shifts) in the var (shift)
+    // And finally, if the domain is marked at that level (mark == level), then it will unmark it (mark == 0)
     function restore(vars, level)
     {
-        //TODO
+        for (let i = 0; i < vars.length; i++){
+            for (let j = 0; j < vars[i].domain.length; j++){
+                if (vars[i].domain_marks[j] == level)
+                    vars[i].domain_marks[j] = 0;
+            }
+        }
     }
 
     // vi and vl are placeholder variable names until 
