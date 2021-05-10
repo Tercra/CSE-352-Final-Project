@@ -6,16 +6,15 @@ window.onload = function(){
             this.day = day
             this.time = time
             this.domain = []
+            this.domain_marks = []
             this.assignment = 0
         }
 
-        // get time() {
-        //     return this.time
-        // }
-
-        // get day() {
-        //     return this.day
-        // }
+        setDomainMarks() {
+            for (var i in this.domain) {
+                this.domain_marks.push(0);
+            }
+        }
     }
 
     var fstring;
@@ -94,7 +93,7 @@ window.onload = function(){
         //
         // close_time: when the store closes
 
-        console.log(input)
+        //console.log(input)
 
         var av = JSON.parse(input);
 
@@ -130,7 +129,7 @@ window.onload = function(){
         {
             for (var day of days)
             {
-                console.log(day)
+                //console.log(day)
                 for (var time of av[p][day])
                 {
                     // convert time[0] and time[1] into minutes
@@ -160,7 +159,17 @@ window.onload = function(){
             }
         }
 
-
+        // TODO: Finish setting up FC4 initialization before calling search_fc4()
+        // May need to pass more parameters than shown in the algorithm due to scope
+        
+        // We need a way to mark each domain in a variable.
+        // For now, going to use an array in Variable called domain_marks
+        for (var day of days) {
+            eval(day + "_shifts[0].setDomainMarks()")
+            eval(day + "_shifts[1].setDomainMarks()")
+            eval(day + "_shifts[2].setDomainMarks()")
+            eval(day + "_shifts[3].setDomainMarks()")
+        }
 
     }
 
