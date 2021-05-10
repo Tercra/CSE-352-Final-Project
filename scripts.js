@@ -33,6 +33,12 @@ window.onload = function(){
                 this.domain_marks.push(0);
             }
         }
+
+        init_non_support_sets() {
+            for (var i in this.domain) {
+                this.non_support_sets.push([])
+            }
+        }
     }
 
     var fstring;
@@ -208,7 +214,48 @@ window.onload = function(){
 
         // TODO: Initialize non_support_sets array
 
+        // for (day of days) {
+        //     eval(day + "_shifts[0].non_support_sets.push([" + day + "_shifts[1], " + day + "_shifts[2], " + day + "_shifts[3]])")
+        //     eval(day + "_shifts[1].non_support_sets.push([0, 2, 3])")
+        //     eval(day + "_shifts[2].non_support_sets.push([0, 1, 3])")
+        //     eval(day + "_shifts[3].non_support_sets.push([0, 1, 2])")
+        // }
+
         var vars = [sun_shifts, mon_shifts, tue_shifts, wed_shifts, thu_shifts, fri_shifts, sat_shifts]
+
+        // First initialize the non_support_sets array
+        for (day of vars) {
+            for (shift of day) {
+                shift.init_non_support_sets()
+            }
+        }
+
+
+        for (day of vars) {
+            shift_num = 0
+            for (shift of day) {
+                shift_num_2 = 0
+                for (shift_2 of day) {
+                    if (shift_num < shift_num_2) {
+                        index = 0
+                        for (domain of shift.domain) {
+                            index_2 = 0
+                            for (domain_2 of shift_2.domain) {
+                                if (domain == domain_2) {
+                                    // Assuming domain is numbers
+                                    shift.non_support_sets[index].push(shift_2)
+                                    shift_2.non_support_sets[index_2].push(shift)
+                                }
+                                index_2 += 1
+                            }
+                            index += 1
+                        }
+                    }
+                    shift_num_2 += 1
+                }
+                shift_num += 1
+            }
+        }
         console.log(vars)
 
         return search_fc4(vars, 1, solution)
