@@ -44,7 +44,11 @@ window.onload = function(){
             fstring = ev.target.result
             console.log(fstring);
             console.log(typeof fstring)
-            output = schedule_shifts(fstring)
+            let output = schedule_shifts(fstring)
+            // TODO: Put some code here to parse through output to make it readable in the user side
+            // For now I'll add a test string to see if this works, replace output_test with the reformated output
+            let output_test = `Hello there\nThis is a test\nTo see if the output can be formatted this way`
+            document.getElementById("Output").innerHTML = output_test;
         }
         reader.readAsText(files[0]);
     });
