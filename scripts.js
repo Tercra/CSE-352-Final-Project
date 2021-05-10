@@ -163,7 +163,7 @@ window.onload = function(){
         // May need to pass more parameters than shown in the algorithm due to scope
         
         // We need a way to mark each domain in a variable.
-        // For now, going to use an array in Variable called domain_marks
+        // For now, going to use an array in Shifts called domain_marks
         for (var day of days) {
             eval(day + "_shifts[0].setDomainMarks()")
             eval(day + "_shifts[1].setDomainMarks()")
