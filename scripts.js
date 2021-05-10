@@ -25,7 +25,7 @@ window.onload = function(){
             this.domain = []
             this.domain_marks = []
             this.non_support_sets = []  //2d array most likely
-            this.assignment = 0
+            this.assignment = false
         }
 
         setDomainMarks() {
@@ -64,6 +64,7 @@ window.onload = function(){
     // If all the domain_marks are marked (1) then return false
     function dwo(v)
     {
+        console.log("This is the DWO Function")
         for (let i = 0; i < v.domain_marks.length; i++){
             if (v.domain_marks[i] == 0)
                 return true;
@@ -77,10 +78,13 @@ window.onload = function(){
     // And finally, if the domain is marked at that level (mark == level), then it will unmark it (mark == 0)
     function restore(vars, level)
     {
+        console.log("this is the restore function")
         for (let i = 0; i < vars.length; i++){
-            for (let j = 0; j < vars[i].domain.length; j++){
-                if (vars[i].domain_marks[j] == level)
-                    vars[i].domain_marks[j] = 0;
+            for (let j = 0; j < 4; j++) {
+                for (let k = 0; k < vars[i].domain.length; k++){
+                    if (vars[i][j].domain_marks[k] == level)
+                        vars[i][j].domain_marks[k] = 0;
+                }
             }
         }
     }
@@ -89,10 +93,27 @@ window.onload = function(){
     // I actually figure out what they do in the algorithm
     function check_forward4(vars, level, shift, person)
     {
+        console.log("this is the check forward function")
         // I changed the names of the last two parameters to "shift" and "person"
         // since that is what they're equivalent to.
 
         // TODO
+        var index = shift.domain.indexOf(person)
+        for (non_support_shift of shift.non_support_sets[index])
+        {
+            //loop through vars and find the shift referred to by the weird S thing
+            for (day of vars) {
+                for (s of day) {
+                    if (s.assignment == false && s.day == non_support_shift.day && s.time == non_support_shift.time) {
+                        s.domain_marks[s.domain.indexOf(person)] = level
+                        if (!dwo(s)) {
+                            return false
+                        }
+                    }
+                }
+            }
+        }
+        return true
     }
 
     function search_fc4(vars, level, solution)
@@ -108,8 +129,32 @@ window.onload = function(){
         // if one person is scheduled twice in one day), but it may be useful in testing/debugging.
 
         // TODO
+        // Choose a variable (based on level)
+        console.log("this is the search_fc4 function, solution=" + solution)
 
-
+        var d = Math.floor((level - 1) / 4)
+        var t = (level - 1) % 4
+        var s = vars[d][t]
+        for (var i = 0; i < s.domain.length; i++)
+        {
+            if (s.domain_marks[i] == 0) {
+                s.assignment = true
+                solution.push([s, s.domain[i]])
+                console.log(solution)
+                if (level == 28)
+                {
+                    // Found a solution
+                    return solution
+                }
+                if (check_forward4(vars, level, s, s.domain[i])) {
+                    return search_fc4(vars, level + 1, solution)
+                }
+                solution.splice(solution.length - 1, 1)
+                s.assignment = false
+                restore(vars, level)
+            }
+        }
+        return []
     }
 
     // function fc4()
@@ -189,20 +234,20 @@ window.onload = function(){
                     var time_start = (parseInt(time[0].slice(0, time[0].indexOf(":"))) * 60) + parseInt(time[0].slice(time[0].indexOf(":") + 1, time[0].length))
                     var time_end = (parseInt(time[1].slice(0, time[1].indexOf(":"))) * 60) + parseInt(time[1].slice(time[1].indexOf(":") + 1, time[1].length))
 
-                    if (time_start < 360 && time_end > 600) {
+                    if (time_start <= 360 && time_end >= 600) {
                         // add this person as a domain for the morning shift
                         eval(day + "_shifts[0].domain.push(" + p + ")")
                         //eval("console.log(" + day + "_shifts[0].domain)")
                     }
-                    if (time_start < 600 && time_end > 840) {
+                    if (time_start <= 600 && time_end >= 840) {
                         // add this person as a domain for the afternoon shift
                         eval(day + "_shifts[1].domain.push(" + p + ")")
                     }
-                    if (time_start < 840 && time_end > 1080) {
+                    if (time_start <= 840 && time_end >= 1080) {
                         // add this person as a domain for the evening shift
                         eval(day + "_shifts[2].domain.push(" + p + ")")
                     }
-                    if (time_start < 1080 && time_end > 1320) {
+                    if (time_start <= 1080 && time_end >= 1320) {
                         // add this person as a domain for the night shift
                         eval(day + "_shifts[3].domain.push(" + p + ")")
                     }
@@ -267,7 +312,17 @@ window.onload = function(){
         }
         console.log(vars)
 
-        return search_fc4(vars, 1, solution)
+        egg = search_fc4(vars, 1, solution)
+
+        for (day of vars){
+            for (shift of day) {
+                console.log(shift.domain)
+            }
+        }
+
+        console.log(egg)
+
+        return egg
     }
 
 }
