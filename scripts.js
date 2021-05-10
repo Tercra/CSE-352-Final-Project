@@ -49,9 +49,16 @@ window.onload = function(){
         reader.readAsText(files[0]);
     });
 
+    // For each given variable (shift), check its domain (people that can cover the shift)
+    // if the domain_mark is 0 (unmarked) return true
+    // If all the domain_marks are marked (1) then return false
     function dwo(v)
     {
-        //TODO
+        for (let i = 0; i < v.domain_marks.length; i++){
+            if (v.domain_marks[i] == 0)
+                return true;
+        }
+        return false;
     }
 
     function restore(vars, level)
@@ -90,17 +97,6 @@ window.onload = function(){
     // {
             //I don't think we need this, our schedule_shifts function handles this
     // }
-
-
-
-
-
-
-
-
-
-
-
 
     function schedule_meetup(input, min_meet_time = 0)
     {
