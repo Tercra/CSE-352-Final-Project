@@ -16,155 +16,25 @@
             <p>Answer will be provided here upon uploading a file: </p>
             <pre id="Output"></pre>
             <p>Provide name (if the same name shows up place a different number in front of it), days of the week, and availabilities during the week through start and end times in military time.</p>
-            <p>Example json file:</p>
+            <p>json template:</p>
             <pre>
                 <code>
                     {
-                        "name1": {
-                            "sun": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
+                    “Name’: {	
+                        “Day” : [	
+                                    [	
+                                    “From Time”,	
+                                    “To TIme”	
+                                    ]	
                                 ]
-                            ],
-                            "mon": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "tue": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "wed": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "thu": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "fri": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "sat": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ]
-                        },
-                        "name2": {
-                            "sun": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "mon": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "tue": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "wed": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "thu": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "fri": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ],
-                            "sat": [
-                                [
-                                    "2:35",
-                                    "10:25"
-                                ],
-                                [
-                                    "12:35",
-                                    "18:25"
-                                ]
-                            ]
-                        }
+                            }
                     }
+                    More entries for different people are allowed.
+                    Day format: sun, mon, tue, wed, thu, fri, sat
+                    There can be multiple day entries in a person entry.
+                    Time has to be in the 24 hour format. 2:00pm will
+                    be 14:00. Time entered will be when the people are
+                    free. Multiple time entries in a day is allowed.
                 </code>
             </pre>
         </div>
