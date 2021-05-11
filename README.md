@@ -5,9 +5,9 @@ Installation:
 1) Under the "Code" button in the github respository, press Download ZIP. You should have been able to download a CSE-352-Final-Project-main.zip file.
 2) Unzipping the package somewhere in your local repository will give you access to the files in the repository
 
-Files of interest for usage: index.html
-Files of interest for back-end: scripts.js
-Files of interest for testing: Example 1.json, Example 2.json, Example 3.json, Example 4.json
+- Files of interest for usage: index.html
+- Files of interest for back-end: scripts.js
+- Files of interest for testing: Example 1.json, Example 2.json, Example 3.json, Example 4.json
 
 Instructions:
 1) Open the index.html file in your browser, any browser should work here.
