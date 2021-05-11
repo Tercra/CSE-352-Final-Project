@@ -53,7 +53,7 @@ window.onload = function(){
             let output = schedule_shifts(fstring)
             // TODO: Put some code here to parse through output to make it readable in the user side
             // For now I'll add a test string to see if this works, replace output_test with the reformated output
-            let output_test = `Hello there\nThis is a test\nTo see if the output can be formatted this way`
+            let output_test = `Sunday\n6AM - 10AM: ` + output[0][1] + `\n10AM - 2PM: ` + output[1][1] + `\n2PM - 6PM: ` + output[2][1] + `\n6PM - 10PM: ` + output[3][1] + `\nMonday\n6AM - 10AM: ` + output[4][1] + `\n10AM - 2PM: ` + output[5][1] + `\n2PM - 6PM: ` + output[6][1] + `\n6PM - 10PM: ` + output[7][1] + `\nTuesday\n6AM - 10AM: ` + output[8][1] + `\n10AM - 2PM: ` + output[9][1] + `\n2PM - 6PM: ` + output[10][1] + `\n6PM - 10PM: ` + output[11][1] + `\nWednesday\n6AM - 10AM: ` + output[12][1] + `\n10AM - 2PM: ` + output[13][1] + `\n2PM - 6PM: ` + output[14][1] + `\n6PM - 10PM: ` + output[15][1] + `\nThursday\n6AM - 10AM: ` + output[16][1] + `\n10AM - 2PM: ` + output[17][1] + `\n2PM - 6PM: ` + output[18][1] + `\n6PM - 10PM: ` + output[19][1] + `\nFriday\n6AM - 10AM: ` + output[20][1] + `\n10AM - 2PM: ` + output[21][1] + `\n2PM - 6PM: ` + output[22][1] + `\n6PM - 10PM: ` + output[23][1] + `\nSaturday\n6AM - 10AM: ` + output[24][1] + `\n10AM - 2PM: ` + output[25][1] + `\n2PM - 6PM: ` + output[26][1] + `\n6PM - 10PM: ` + output[27][1]
             document.getElementById("Output").innerHTML = output_test;
         }
         reader.readAsText(files[0]);
